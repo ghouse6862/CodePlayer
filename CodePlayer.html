@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <title>Code Player</title>
+        <link rel="stylesheet" href="CodePlayer.css">
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    </head>
+    <body>
+        <div id="header">
+            <div id="logo">
+                CodePlayer
+            </div>
+            <div id="buttonContainer">
+                <div class="toggleButton highlighted" id="html">HTML</div>
+                <div class="toggleButton" id="css">CSS</div>
+                <div class="toggleButton" id="JavaScript">JavaScript</div>
+                <div class="toggleButton highlighted" id="Output">Output</div>
+            </div>
+        </div>
+        <div id="mainBody">
+            <textarea class="panel" id="htmldiv">
+                <p id="para">Hello World!</p>
+            </textarea>
+            <textarea class="panel hen" id="cssdiv">
+                p {
+                 color: green;
+                }
+            </textarea>
+            <textarea class="panel hen" id="JavaScriptdiv">
+                document.getElementById("para").innerHTML = "Hello Rob!";
+            </textarea>
+            <iframe class="panel" id="Outputdiv">
+            </iframe>
+        </div>
+        <script>
+            function loadScreen() {
+                var highlighted = 4-$(".hen").length;
+                var width = ($(window).width()/highlighted)-7;
+                $(".panel").width(width);
+            }
+            function updateScreen() {
+                $("iframe").contents().find("html").html("<html>"+"<head>"+"<style>"+$("#cssdiv").val()+"</style>"+"</head>"+"<body>"+$("#htmldiv").val()+"</body>"+"</html>");
+                document.getElementById("Outputdiv").contentWindow.eval($("#JavaScriptdiv").val());
+            }
+            loadScreen();
+            updateScreen();
+            $(".toggleButton").hover(function() {
+               $(this).addClass("hovering"); 
+            },function() {
+                $(this).removeClass("hovering");
+            });
+            $(".toggleButton").click(function() {
+                $(this).toggleClass("highlighted");
+                var myEle = "#"+$(this).attr('id')+"div";
+                $(myEle).toggleClass("hen");
+                loadScreen();
+            });
+            
+            $("textarea").on("change keyup paste", function() {
+                updateScreen();
+            });
+        </script>
+    </body>
+</html>
