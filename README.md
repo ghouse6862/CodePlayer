@@ -1,1 +1,1 @@
-This project was done as part of my Complete Web Developer Course on Udemy. Here, I built a website using HTML5,CSS3,Javascript and JQuery in which a user can execute their HTML,CSS and Javascript code and get the ouptut.  
+This project was done as part of my Complete Web Developer Course on Udemy. Here, I built a website using HTML5,CSS3,Javascript and JQuery in which a user can execute their HTML,CSS and Javascript code and get the output.  
